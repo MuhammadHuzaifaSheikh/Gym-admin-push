@@ -20,7 +20,7 @@ const RegisterGymSchema = Yup.object().shape({
     phone: Yup.string().matches(/^\d+$/, 'Invalid phone number !'),
     city: Yup.string().required('City is required !'),
     description: Yup.string(),
-    images: Yup.array().min(1, 'At least one image is required').required('Image is required'),
+    images: Yup.array(),
 });
 
 const Register = () => {

@@ -69,11 +69,7 @@ const Navbar = () => {
                       Home
                     </Link>
                   </li>
-                  <li className={location.pathname === "/RegisterIntoJim" ? "active" : ""}>
-                    <Link to="/RegisterIntoJim" style={{ textDecoration: "none" }}>
-                      Register Into Jim
-                    </Link>
-                  </li>
+                
                   <li
                     className={
                       location.pathname === "/Contact-us" ? "active" : ""
@@ -88,6 +84,18 @@ const Navbar = () => {
             </div>
             <div className="col-lg-4">
               <div className="top-option">
+              <Link
+                  to={"/RegisterIntoJim"}
+                  className="primary-btn"
+                  style={{
+                    borderRadius: "24px",
+                    backgroundColor: "#161C27",
+                    // marginRight: "10px",
+                    textDecoration: "none",
+                  }}
+                >
+                   Register Into Gym
+                </Link>
                 <Link
                   to={"/Register"}
                   className="primary-btn"
