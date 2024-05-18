@@ -12,7 +12,6 @@ const Home = () => {
     <>
       <Header/>
       <Hero/>
-      <FindJim/>
       <Feature/>
       <ContactSection background={"#0a0a0a"}/>
     </>
