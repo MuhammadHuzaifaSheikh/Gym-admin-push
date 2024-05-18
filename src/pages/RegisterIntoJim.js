@@ -17,7 +17,6 @@ const RegisterUserSchema = Yup.object().shape({
     password: Yup.string().min(6, 'Password must be at least 6 characters !').required('Password is required !'),
     phone: Yup.string().matches(/^\d+$/, 'Invalid phone number !'),
     city: Yup.string().required('City is required !'),
-    package: Yup.string().required('packge is required !'),
     description: Yup.string(),
     images: Yup.array()
 });
@@ -32,7 +31,6 @@ const RegisterIntoJim = () => {
     const [showImages, setShowImages] = useState([]);
     const inputRef = useRef(null)
     const navigate = useNavigate()
-    const [packagesData, SetPackagesData] = useState([]);
 
 
     const handleSubmit = async (values, formikBag) => {
@@ -40,7 +38,6 @@ const RegisterIntoJim = () => {
             let formValues = await RegisterUserSchema.validate(values, { abortEarly: false });
             // let formValues = values
 
-            formValues["BusinessLocation"] = id
             const formData = new FormData();
 
 
@@ -57,7 +54,8 @@ const RegisterIntoJim = () => {
                 });
             }
 
-            const response = await axios.post(`${App_host}/user/addUser`, formData, {
+            console.log(formValues)
+            const response = await axios.post(`${App_host}/user/register`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -93,6 +91,8 @@ const RegisterIntoJim = () => {
                 navigate('/')
             }, 2000);
         } catch (error) {
+
+            console.log(error?.response)
             toast.error(error?.response?.data?.message, {
                 position: "top-right",
                 autoClose: 5000,
@@ -118,21 +118,21 @@ const RegisterIntoJim = () => {
         is_admin_package: false
     }
 
-    const getPackagesList = async () => {
-        try {
-            const response = await axios.get(`${App_host}/packages/getPackages`, {
-                params: params,
-            });
+    // const getPackagesList = async () => {
+    //     try {
+    //         const response = await axios.get(`${App_host}/packages/getPackages`, {
+    //             params: params,
+    //         });
 
-            let { results, ...otherPages } = response.data.data
-            SetPackagesData(results);
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
-    }
-    useEffect(() => {
-        getPackagesList()
-    }, [])
+    //         let { results, ...otherPages } = response.data.data
+    //         SetPackagesData(results);
+    //     } catch (error) {
+    //         console.error('Error fetching users:', error);
+    //     }
+    // }
+    // useEffect(() => {
+    //     getPackagesList()
+    // }, [])
 
     return (
         <>
@@ -165,7 +165,6 @@ const RegisterIntoJim = () => {
                                         phone: '',
                                         city: '',
                                         description: '',
-                                        package: '',
                                         images: [],
                                     }}
                                     validationSchema={RegisterUserSchema}
@@ -197,7 +196,7 @@ const RegisterIntoJim = () => {
                                             <ErrorMessage name="city" component="span" className="error" />
                                             <Field type="text" name="city" placeholder="City" />
 
-                                            <Field
+                                            {/* <Field
                                                 as="select"
                                                 name="package"
                                                 className="form-select"
@@ -215,7 +214,7 @@ const RegisterIntoJim = () => {
                                                         </option>
                                                     ))}
                                             </Field>
-                                            <ErrorMessage name="package" component="span" className="error" />
+                                            <ErrorMessage name="package" component="span" className="error" /> */}
 
                                             <Field as="textarea" name="description" placeholder="Description" />
                                             {/* <div className='w-100 h-20 my-2' onClick={HandleselectImage} style={{color:'white'}}>

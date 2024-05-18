@@ -15,7 +15,7 @@ const Header = () => {
                 <nav className="canvas-menu mobile-menu">
                     <ul>
                         <li className="active"><Link to={"/Gym"}>Home</Link></li>
-                        <li><Link to={"/Gym"}>Gyms</Link></li>
+                        <li><Link to={"/RegisterIntoJim"}>Register into Gym</Link></li>
                         <li><Link to={'Contact-us'}>Contact Us</Link></li>
                     </ul>
                 </nav>

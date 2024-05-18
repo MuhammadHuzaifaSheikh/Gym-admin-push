@@ -69,9 +69,9 @@ const Navbar = () => {
                       Home
                     </Link>
                   </li>
-                  <li className={location.pathname === "/Gym" ? "active" : ""}>
-                    <Link to="/Gym" style={{ textDecoration: "none" }}>
-                      Gyms
+                  <li className={location.pathname === "/RegisterIntoJim" ? "active" : ""}>
+                    <Link to="/RegisterIntoJim" style={{ textDecoration: "none" }}>
+                      Register Into Jim
                     </Link>
                   </li>
                   <li
