@@ -32,7 +32,11 @@ const RegisterIntoJim = () => {
     const inputRef = useRef(null)
     const navigate = useNavigate()
 
+    const fileInputRef = useRef(null);
 
+    const handleFileUploadClick = () => {
+      fileInputRef.current.click();
+    };
     const handleSubmit = async (values, formikBag) => {
         try {
             let formValues = await RegisterUserSchema.validate(values, { abortEarly: false });
@@ -238,15 +242,34 @@ const RegisterIntoJim = () => {
                                             <input
                                                 type="file"
                                                 name="images"
+                                                multiple
                                                 onChange={(event) => {
                                                     const files = Array.from(event.currentTarget.files);
-                                                    console.log(files)
                                                     setFieldValue("images", files);
-
-
                                                 }}
-
-                                                accept="image/*" />
+                                                ref={fileInputRef}
+                                                style={{ display: "none" }}
+                                                accept="image/*"
+                                            />
+                                            <div
+                                                className="custom-file-upload"
+                                                onClick={handleFileUploadClick}
+                                                style={{
+                                                    cursor: "pointer",
+                                                    padding: "10px",
+                                                    border: "2px dashed #fff",
+                                                    display: "inline-block",
+                                                    color: "white",
+                                                    textAlign: "center",
+                                                    marginBottom: "10px",
+                                                }}
+                                            >
+                                                <FontAwesomeIcon
+                                                    icon={faUpload}
+                                                    style={{ color: "white", fontSize: "30px" }}
+                                                />{" "}
+                                                Upload Images
+                                            </div>
 
                                             <button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
                                                 {isSubmitting ? "submitting ...." : 'Submit'}

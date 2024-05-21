@@ -28,7 +28,11 @@ const Register = () => {
     const [showImages, setShowImages] = useState([]);
     const inputRef = useRef(null)
 
+    const fileInputRef = useRef(null);
 
+    const handleFileUploadClick = () => {
+      fileInputRef.current.click();
+    };
     const HandleselectImage = () => {
         inputRef.current.click()
     }
@@ -39,7 +43,7 @@ const Register = () => {
             console.log("a gaya aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", formikBag)
 
             const formValues = await RegisterGymSchema.validate(values, { abortEarly: false });
-            formValues.status='pending'
+            formValues.status = 'pending'
             const formData = new FormData();
 
             // Append non-file fields
@@ -90,8 +94,8 @@ const Register = () => {
                 });
             }
             formikBag?.resetForm();
-           setTimeout(() => {
-               navigate('/')
+            setTimeout(() => {
+                navigate('/')
             }, 2000);
         } catch (error) {
             console.log("error.response.data.message", error)
@@ -203,20 +207,37 @@ const Register = () => {
                                                 />
                                             </div> */}
                                             <ErrorMessage name="images" component="span" className="error" />
-
                                             <input
                                                 type="file"
                                                 name="images"
                                                 multiple
                                                 onChange={(event) => {
                                                     const files = Array.from(event.currentTarget.files);
-                                                    console.log(files)
                                                     setFieldValue("images", files);
                                                 }}
-
+                                                ref={fileInputRef}
+                                                style={{ display: "none" }}
                                                 accept="image/*"
                                             />
-
+                                            <div
+                                                className="custom-file-upload"
+                                                onClick={handleFileUploadClick}
+                                                style={{
+                                                    cursor: "pointer",
+                                                    padding: "10px",
+                                                    border: "2px dashed #fff",
+                                                    display: "inline-block",
+                                                    color: "white",
+                                                    textAlign: "center",
+                                                    marginBottom: "10px",
+                                                }}
+                                            >
+                                                <FontAwesomeIcon
+                                                    icon={faUpload}
+                                                    style={{ color: "white", fontSize: "30px" }}
+                                                />{" "}
+                                                Upload Images
+                                            </div>
                                             <button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
                                                 {isSubmitting ? "submitting ...." : 'Submit'}
                                             </button>
