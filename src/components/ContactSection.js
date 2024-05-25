@@ -79,7 +79,7 @@ const ContactSection = ({ background }) => {
     };
     return (
         <div>
-            <section className="contact-section spad" style={{ backgroundColor: background }}>
+            <section id="contact" className="contact-section spad" style={{ backgroundColor: background }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6">

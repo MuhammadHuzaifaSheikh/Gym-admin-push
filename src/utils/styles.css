@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .slideC {
   position: relative;
   perspective: 1000px;

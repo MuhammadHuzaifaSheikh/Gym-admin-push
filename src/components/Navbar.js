@@ -75,9 +75,9 @@ const Navbar = () => {
                       location.pathname === "/Contact-us" ? "active" : ""
                     }
                   >
-                    <Link to="/Contact-us" style={{ textDecoration: "none" }}>
+                    <a href="#contact" style={{ textDecoration: "none" }}>
                       Contact Us
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </nav>
@@ -94,7 +94,7 @@ const Navbar = () => {
                     textDecoration: "none",
                   }}
                 >
-                   Register Into Gym
+                   Register User
                 </Link>
                 <Link
                   to={"/Register"}
